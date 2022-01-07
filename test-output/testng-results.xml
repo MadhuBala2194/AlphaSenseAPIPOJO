@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testng-results ignored="0" total="5" passed="5" failed="0" skipped="0">
+  <reporter-output>
+  </reporter-output>
+  <suite started-at="2022-01-08T02:14:43 IST" name="Suite" finished-at="2022-01-08T02:14:48 IST" duration-ms="4443">
+    <groups>
+    </groups>
+    <test started-at="2022-01-08T02:14:43 IST" name="Test" finished-at="2022-01-08T02:14:48 IST" duration-ms="4443">
+      <class name="APITest.LoginTest">
+        <test-method signature="LoginTestResponse()[pri:0, instance:APITest.LoginTest@37654521]" started-at="2022-01-08T02:14:47 IST" name="LoginTestResponse" finished-at="2022-01-08T02:14:48 IST" duration-ms="516" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- LoginTestResponse -->
+      </class> <!-- APITest.LoginTest -->
+      <class name="APITest.ManifestTest">
+        <test-method signature="testManifestJson()[pri:0, instance:APITest.ManifestTest@2df9b86]" started-at="2022-01-08T02:14:47 IST" name="testManifestJson" finished-at="2022-01-08T02:14:47 IST" duration-ms="241" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- testManifestJson -->
+      </class> <!-- APITest.ManifestTest -->
+      <class name="APITest.SearchKeywordTest">
+        <test-method signature="searchWithInValidKeyword(java.lang.String)[pri:0, instance:APITest.SearchKeywordTest@69997e9d]" started-at="2022-01-08T02:14:46 IST" name="searchWithInValidKeyword" data-provider="InValid_Keyword" finished-at="2022-01-08T02:14:47 IST" duration-ms="661" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[...]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchWithInValidKeyword -->
+        <test-method signature="searchWithValidKeyword(java.lang.String)[pri:0, instance:APITest.SearchKeywordTest@69997e9d]" started-at="2022-01-08T02:14:47 IST" name="searchWithValidKeyword" data-provider="Valid_Keyword" finished-at="2022-01-08T02:14:47 IST" duration-ms="137" status="PASS">
+          <params>
+            <param index="0">
+              <value>
+                <![CDATA[Alpha]]>
+              </value>
+            </param>
+          </params>
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- searchWithValidKeyword -->
+      </class> <!-- APITest.SearchKeywordTest -->
+      <class name="APITest.LoginTestWithPojoImplementation">
+        <test-method signature="loginresponse()[pri:0, instance:APITest.LoginTestWithPojoImplementation@34f5090e]" started-at="2022-01-08T02:14:43 IST" name="loginresponse" finished-at="2022-01-08T02:14:46 IST" duration-ms="2832" status="PASS">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- loginresponse -->
+      </class> <!-- APITest.LoginTestWithPojoImplementation -->
+    </test> <!-- Test -->
+  </suite> <!-- Suite -->
+</testng-results>
