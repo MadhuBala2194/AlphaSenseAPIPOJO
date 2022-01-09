@@ -7,7 +7,10 @@ import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import APIDTO.KeywordSearchErrorResponseDTO;
+import APIDTO.KeywordSearchRootDTO;
 import APIDTO.LoginRequestDTO;
+
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import io.restassured.response.ResponseBody;
@@ -23,6 +26,7 @@ public class SearchKeywordTest {
 	boolean status = false;
 	String errorStatusline = "HTTP/1.1 500 Internal Server Error";
 	String successStatusLine = "HTTP/1.1 200 OK";
+	String content = null;
 	String json = null;
 
 	public Map<String, String> getQueryParam() {
@@ -59,14 +63,27 @@ public class SearchKeywordTest {
 		response = (Response) request.queryParams(getQueryParam())
 				.queryParam("keyword", keyword).get("/keyword-search");
 		
-		 json = response.asString();
+		 responseBody = response.getBody();
 		 
-		 if(response.getStatusCode()==200 && response.getStatusLine()== successStatusLine) {			 
+		 KeywordSearchRootDTO searchKeywordDTO = responseBody.as(KeywordSearchRootDTO.class);
 		 
-		  json.contains("www.alpha-sense.com");  
-		  
+		 Assert.assertEquals(1,searchKeywordDTO.getSearchResults().getOriginalStatementCount());
+		 
+		 Assert.assertEquals(200, response.getStatusCode());
+		 
+		 Assert.assertEquals(successStatusLine, response.getStatusLine());
+		 
+		 Assert.assertEquals(5172, searchKeywordDTO.getSearchResults().getStatements().get(0).getStatementIndex());
+		
+		// System.out.println( searchKeywordDTO.getSearchResults().getStatements().get(0).getContent());
+		 
+		content = searchKeywordDTO.getSearchResults().getStatements().get(0).getContent().toString();
+		
+			 if(content.contains("www.alpha-sense.com")) {
+				 
 		  status = true;
 		 }
+		 
 		 
 		 if(status) {
 			 
@@ -84,11 +101,19 @@ public class SearchKeywordTest {
 		response = (Response) request.queryParams(getQueryParam())
 				.queryParam("keyword", keyword).get("/keyword-search");
 		
-		 json = response.asString();
+		responseBody = response.getBody();
+		 
+		KeywordSearchErrorResponseDTO keywordSearchErrorResponseDTO = responseBody.as(KeywordSearchErrorResponseDTO.class);		 
+		 
+		 
+		 Assert.assertEquals(500, response.getStatusCode());
+		 
+		 Assert.assertEquals(errorStatusline, response.getStatusLine());
+		 
+		 
+		content = keywordSearchErrorResponseDTO.getMessage();
 		
-		if(response.getStatusCode()==500 && response.getStatusLine()== errorStatusline) {
-		
-		json.contains("Request failed with status code 400");
+		if(content.contains("Request failed with status code 400")) {
 		
 		status = true;
 	}
